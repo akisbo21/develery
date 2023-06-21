@@ -19,7 +19,7 @@ Itt erheto el a contact form:
 
 https://localhost/contact
 
-A vue app az ***/assets*** mappaban
+A vue app az ***/assets*** mappaban van.
 
 
 
