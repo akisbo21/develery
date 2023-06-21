@@ -17,14 +17,6 @@ class ContactController extends AbstractController
 
     public function contactAction(): Response
     {
-        $number = random_int(0, 100);
-
-        return $this->render('contact/contact.html.twig', [
-            'number' => $number,
-        ]);
-
-//        $content = $twig->render($template, $data);
-//
-//        return new Response($content);
+        return $this->render('contact/contact.html.twig');
     }
 }
