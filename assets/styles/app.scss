@@ -1,0 +1,17 @@
+body {
+    padding: 50px;
+    background-color: #eee;
+
+    #contact-page{
+        form{
+            border: 3px solid #aaa;
+            padding: 20px;
+        }
+
+        .success-message{
+            font-size: 26px;
+            font-weight: bold;
+            color: #28a745;
+        }
+    }
+}
