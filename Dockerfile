@@ -123,3 +123,10 @@ WORKDIR /srv/app
 COPY --from=app_caddy_builder --link /usr/bin/caddy /usr/bin/caddy
 COPY --from=app_php --link /srv/app/public public/
 COPY --link docker/caddy/Caddyfile /etc/caddy/Caddyfile
+
+
+
+# Node
+FROM node:16 AS app_node
+WORKDIR /srv/app
+RUN npm install

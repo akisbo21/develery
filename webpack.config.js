@@ -43,9 +43,10 @@ Encore
     .enableVersioning(Encore.isProduction())
 
     // configure Babel
-    // .configureBabel((config) => {
-    //     config.plugins.push('@babel/a-babel-plugin');
-    // })
+    .configureBabel(() => {}, {
+        useBuiltIns: 'usage',
+        corejs: 3
+    })
 
     // enables and configure @babel/preset-env polyfills
     .configureBabelPresetEnv((config) => {
@@ -68,6 +69,8 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
+
+    .enableVueLoader()
 ;
 
 module.exports = Encore.getWebpackConfig();
