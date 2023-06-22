@@ -127,6 +127,11 @@ COPY --link docker/caddy/Caddyfile /etc/caddy/Caddyfile
 
 
 # Node
-FROM node:16 AS app_node
+COPY package.json /srv/app
 WORKDIR /srv/app
+RUN apk add --update nodejs npm
 RUN npm install
+RUN npm rebuild node-sass
+
+
+

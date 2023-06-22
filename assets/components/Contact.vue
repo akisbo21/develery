@@ -40,7 +40,10 @@
                 showSuccess: false,
                 name: '',
                 email: '',
-                message: ''
+                message: '',
+                // name: 'Alma Andor',
+                // email: 'alma.andor@alma.com',
+                // message: 'Sziasztok! Tudnatok ajanlani egy jo bitkos konyvet ?'
             };
         },
         methods: {
@@ -52,13 +55,21 @@
                     return false;
                 }
 
-                // @todo
-                // Data is valid, send it to the backend.
-                console.log('Name:', this.name);
-                console.log('Email:', this.email);
-                console.log('Message:', this.message);
+                var post = {
+                    'name':  this.name,
+                    'email': this.email,
+                    'message': this.message
+                };
 
-                this.showSuccess = true;
+                console.log('/contact/save', post);
+
+                this.$api.post(`/contact/save`, data).then((response) => {
+                    console.log('Response', response);
+
+                    this.showSuccess = true;
+                });
+
+
             }
         }
     };

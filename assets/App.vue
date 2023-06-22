@@ -6,11 +6,7 @@
 
     export default {
         components: {
-            Contact,
-        },
-
-        data: () => ({
-            alma: 0
-        })
+            Contact
+        }
     }
 </script>
