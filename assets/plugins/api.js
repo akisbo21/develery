@@ -6,6 +6,8 @@ var Api = function (host) {
 	self.post = (url, data) => {
 		url = self.baseUrl + url;
 
+		// console.log('post', url, data);
+
 		return new Promise((resolve) => {
 			fetch(url, {
 				method: 'POST',
@@ -16,8 +18,8 @@ var Api = function (host) {
 			})
 				.then(res => res.json())
 				.then(res => {
-					var body = res.body ? res.body : res.content;
-					resolve(body);
+					var body = res.content ? res.content : '';
+					resolve(res);
 				})
 		});
 	}

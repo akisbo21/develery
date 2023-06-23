@@ -77,7 +77,7 @@ COPY --from=composer/composer:2-bin --link /composer /usr/bin/composer
 
 # prevent the reinstallation of vendors at every changes in the source code
 COPY --link composer.* symfony.* ./
-RUN set -eux; \
+RUN set -eux; \a
     if [ -f composer.json ]; then \
 		composer install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress; \
 		composer clear-cache; \
@@ -95,6 +95,16 @@ RUN set -eux; \
 		composer run-script --no-dev post-install-cmd; \
 		chmod +x bin/console; sync; \
     fi
+
+
+
+# Node
+COPY package.json /srv/app
+WORKDIR /srv/app
+RUN apk add --update nodejs npm
+RUN npm install
+RUN npm rebuild node-sass
+
 
 # Dev image
 FROM app_php AS app_php_dev
@@ -115,6 +125,8 @@ RUN set -eux; \
 
 RUN rm -f .env.local.php
 
+
+
 # Caddy image
 FROM caddy:2-alpine AS app_caddy
 
@@ -123,15 +135,4 @@ WORKDIR /srv/app
 COPY --from=app_caddy_builder --link /usr/bin/caddy /usr/bin/caddy
 COPY --from=app_php --link /srv/app/public public/
 COPY --link docker/caddy/Caddyfile /etc/caddy/Caddyfile
-
-
-
-# Node
-COPY package.json /srv/app
-WORKDIR /srv/app
-RUN apk add --update nodejs npm
-RUN npm install
-RUN npm rebuild node-sass
-
-
 

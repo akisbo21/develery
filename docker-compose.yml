@@ -23,6 +23,8 @@ services:
       MERCURE_URL: ${CADDY_MERCURE_URL:-http://caddy/.well-known/mercure}
       MERCURE_PUBLIC_URL: https://${SERVER_NAME:-localhost}/.well-known/mercure
       MERCURE_JWT_SECRET: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
+    networks:
+      - develery
 
   caddy:
     build:
@@ -52,6 +54,8 @@ services:
       - target: 443
         published: ${HTTP3_PORT:-443}
         protocol: udp
+    networks:
+      - develery
 
   mysql:
     build: ./mysql
@@ -62,6 +66,8 @@ services:
       - ./mysql/conf/my.conf:/etc/mysql/my.cnf
     environment:
       MYSQL_ROOT_PASSWORD: root
+    networks:
+      - develery
 
 # Mercure is installed as a Caddy module, prevent the Flex recipe from installing another service
 ###> symfony/mercure-bundle ###
@@ -73,3 +79,9 @@ volumes:
   caddy_config:
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
+
+
+networks:
+  develery:
+    name: develery-network
+    attachable: true

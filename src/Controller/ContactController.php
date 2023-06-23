@@ -19,4 +19,11 @@ class ContactController extends AbstractController
     {
         return $this->render('contact/contact.html.twig');
     }
+
+    public function saveAction(): Response
+    {
+        return new Response(json_encode([
+            'content' => 'ok'
+        ]));
+    }
 }
