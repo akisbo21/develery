@@ -1,11 +1,15 @@
 body {
-    padding: 50px;
     background-color: #eee;
 
     #contact-page{
         form{
             border: 3px solid #aaa;
             padding: 20px;
+
+            @media (max-width: 600px) {
+                border: none;
+                padding: 0;
+            }
         }
 
         .success-message{

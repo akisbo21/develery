@@ -1,19 +1,24 @@
 <template>
-    <div id="contact-page">
+    <v-container id="contact-page">
         <v-row justify="center">
-            <v-form @submit.prevent="submitForm" class="w-50 rounded-lg" ref="contactForm" v-model="valid">
-                <v-text-field v-model="name" label="Name" :rules="[required]"></v-text-field>
-                <v-text-field v-model="email" label="Email" :rules="emailRules"></v-text-field>
-                <v-textarea v-model="message" label="Message" :rules="[required]"></v-textarea>
+            <v-col>
+                <v-form @submit.prevent="submitForm" class="rounded" ref="contactForm" v-model="valid">
+                    <v-text-field v-model="name" label="Name" :rules="[required]"></v-text-field>
+                    <v-text-field v-model="email" label="Email" :rules="emailRules"></v-text-field>
+                    <v-textarea v-model="message" label="Message" :rules="[required]"></v-textarea>
 
-                <v-btn type="submit" color="primary" class="float-right" :disabled="!isFormValid">Submit</v-btn>
-            </v-form>
+                    <v-btn type="submit" color="primary" class="float-right" :disabled="!isFormValid">Submit</v-btn>
+                </v-form>
+            </v-col>
         </v-row>
 
-        <v-row v-if="showSuccess" class="success-message mt-15" justify="center">
-            Success
+
+        <v-row v-if="showSuccess" class="success-message mt-10">
+            <v-col class="text-center">
+                Success
+            </v-col>
         </v-row>
-    </div>
+    </v-container>
 </template>
 
 <script>
