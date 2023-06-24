@@ -77,7 +77,7 @@ COPY --from=composer/composer:2-bin --link /composer /usr/bin/composer
 
 # prevent the reinstallation of vendors at every changes in the source code
 COPY --link composer.* symfony.* ./
-RUN set -eux; \a
+RUN set -eux; \
     if [ -f composer.json ]; then \
 		composer install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress; \
 		composer clear-cache; \
@@ -87,16 +87,10 @@ RUN set -eux; \a
 COPY --link  . ./
 RUN rm -Rf docker/
 
-RUN set -eux; \
-	mkdir -p var/cache var/log; \
-    if [ -f composer.json ]; then \
-		composer dump-autoload --classmap-authoritative --no-dev; \
-		composer dump-env prod; \
-		composer run-script --no-dev post-install-cmd; \
-		chmod +x bin/console; sync; \
-    fi
 
-
+RUN docker-php-ext-install pdo pdo_mysql
+RUN docker-php-ext-install mysqli
+RUN docker-php-ext-enable pdo_mysql
 
 # Node
 COPY package.json /srv/app
