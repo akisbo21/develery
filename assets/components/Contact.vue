@@ -43,12 +43,12 @@
             return {
                 valid: false,
                 showSuccess: false,
-                // name: '',
-                // email: '',
-                // message: '',
-                name: 'Alma Andor',
-                email: 'alma.andor@alma.com',
-                message: 'Sziasztok! Tudnatok ajanlani egy jo bitkos konyvet ?'
+                name: '',
+                email: '',
+                message: '',
+                // name: 'Alma Andor',
+                // email: 'alma.andor@alma.com',
+                // message: 'Sziasztok! Tudnatok ajanlani egy jo bitkos konyvet ?'
             };
         },
         methods: {
